@@ -1,9 +1,9 @@
 const timeline = [
     {
-        period: '2020',
+        period: '2020 — 2022',
         title: 'FSc Pre-Engineering',
-        place: 'COVID lockdown, all physical activities moved online',
-        detail: '',
+        place: 'The beginning of my interest in computing',
+        detail: 'Started exploring how online games, networks, and real-time systems work',
     },
     {
         period: '2022 — 2026',
@@ -13,39 +13,39 @@ const timeline = [
     },
     {
         period: '2024',
-        title: 'Front-End Developer Certification',
-        place: 'Meta via Coursera',
+        title: 'Meta Front-End Developer Certificate',
+        place: 'Meta · Coursera',
         detail: 'Professional Certificate',
     },
     {
-        period: 'Fall 2025',
-        title: 'CALICO Fall 25',
-        place: 'UC Berkeley · Ranked #22 in Pakistan',
-        detail: '',
+        period: '2024 — 2026',
+        title: 'Building independently',
+        place: 'Full-stack, backend, and AI/ML projects',
+        detail: 'LearnEx · InterviewPrep · CampusGuard · Vendora',
     },
     {
-        period: '2025',
-        title: '2nd Place, CodeFusion Hackathon',
-        place: 'Shipped a working product under a hard deadline',
-        detail: '',
+        period: 'Fall 2025',
+        title: 'CALICO Fall 2025',
+        place: 'UC Berkeley competitive programming',
+        detail: 'Ranked #22 in Pakistan',
     },
     {
         period: 'Spring 2026',
-        title: 'CALICO Spring 26',
-        place: 'UC Berkeley · Ranked #32 in Pakistan',
-        detail: '',
+        title: 'CALICO Spring 2026',
+        place: 'UC Berkeley competitive programming',
+        detail: 'Ranked #32 in Pakistan',
+    },
+    {
+        period: '2025',
+        title: 'CodeFusion Hackathon',
+        place: '2nd place',
+        detail: 'Built and shipped a working product under a hard deadline',
     },
     {
         period: '2026',
         title: 'DevWeekend Fellowship',
         place: 'Bronze Badge',
-        detail: '',
-    },
-    {
-        period: '2024 — Present',
-        title: 'Building independently',
-        place: 'LearnEx · InterviewPrep · CampusGuard · Vendora',
-        detail: '4 production-grade projects',
+        detail: 'Developer fellowship',
     },
 ]
 

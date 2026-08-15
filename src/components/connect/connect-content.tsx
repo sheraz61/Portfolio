@@ -120,7 +120,7 @@ export function ConnectContent() {
 
                                 {/* WhatsApp */}
                                 <a
-                                    href="https://wa.me/923014529958"
+                                    href="https://wa.me/923052094845"
                                     target="_blank"
                                     rel="noreferrer"
                                     className="group inline-flex w-fit items-center gap-2 text-base font-medium text-foreground transition-colors hover:text-primary"

@@ -113,4 +113,112 @@ export const projects: Project[] = [
         ],
         github: 'https://github.com/sheraz61/interviewprep',
     },
+    {
+        slug: 'campusconnect',
+        name: 'CampusConnect',
+        period: '2026 — Present',
+        status: 'Building',
+        description:
+            'A campus connectivity platform designed to help students share notes and past papers, with upcoming features for lending and requesting items within hostels.',
+        highlights: [
+            'Implemented a secure sharing system for academic resources (notes, past papers)',
+            'Designing a request and lending system tailored for hostel students',
+            'Focusing on campus-specific community connectivity and resource sharing',
+        ],
+        stack: [
+            'React.js',
+            'JavaScript',
+            'Node.js',
+            'MongoDB',
+        ],
+        github: 'https://github.com/sheraz61/Campus-Connect',
+    },
+    {
+        slug: 'doctor-appointment',
+        name: 'Doctor Appointment System',
+        period: 'Jan 2026 — Feb 2026',
+        status: 'Completed',
+        description:
+            'A full-stack doctor appointment booking platform featuring separate role-based dashboards for patients, doctors, and administrators.',
+        highlights: [
+            'Implemented secure JWT-based authentication and role-based access control',
+            'Developed real-time slot availability and appointment scheduling logic',
+            'Built responsive frontend interfaces and RESTful APIs',
+            'Integrated Cloudinary for robust doctor and patient profile image management',
+        ],
+        stack: [
+            'React',
+            'Node.js',
+            'Express',
+            'MongoDB',
+            'Cloudinary',
+        ],
+        github: 'https://github.com/sheraz61/doctorAppointment',
+    },
+    {
+        slug: 'blog-backend',
+        name: 'Blog Application Backend',
+        period: 'Apr 2025 — May 2025',
+        status: 'Completed',
+        description:
+            'A complete user authentication and account management backend system designed with strict security practices and API alignment.',
+        highlights: [
+            'Designed features for register, login/logout, OTP email verification, and password management',
+            'Applied JWT authentication and bcrypt for secure password hashing',
+            'Integrated Nodemailer for automated email communication',
+            'Thoroughly tested all REST APIs using Postman to ensure performance and reliability',
+        ],
+        stack: [
+            'Node.js',
+            'Express',
+            'MongoDB',
+            'JWT',
+            'Nodemailer',
+        ],
+        github: 'https://github.com/sheraz61/BlogApplicaiton-Backend',
+    },
+    {
+        slug: 'quinttech',
+        name: 'QuintTech',
+        period: 'Jan 2026',
+        status: 'Completed',
+        description:
+            'A modern, responsive landing page and technology services website built for a startup in collaboration with a fellow developer.',
+        highlights: [
+            'Built a multi-page navigation experience including Home, Services, Portfolio, About, and Contact',
+            'Implemented a modern UI with smooth gradient designs, animated hero sections, and hover effects',
+            'Ensured fully responsive layouts across mobile, tablet, and desktop viewports',
+            'Delivered the entire project under a rapid 2-week development cycle',
+        ],
+        stack: [
+            'React',
+            'Vite',
+            'Tailwind CSS',
+            'React Router',
+        ],
+        github: 'https://github.com/sheraz61/QuintTech',
+        vercel: 'https://quinttech.netlify.app/',
+    },
+    {
+        slug: 'expense-manager',
+        name: 'Budget Tracker App',
+        period: 'Apr 2025',
+        status: 'Completed',
+        description:
+            'A client-side expense tracking application designed to help users manage budgets efficiently with persistent local storage.',
+        highlights: [
+            'Built functionality to create and manage multiple budget categories and track specific expenses',
+            'Implemented robust data persistence using browser Local Storage API so data remains after refresh',
+            'Managed global application state seamlessly using React Context API',
+            'Integrated date-fns for precise expense history tracking and formatting',
+        ],
+        stack: [
+            'React',
+            'React Bootstrap',
+            'Context API',
+            'Local Storage',
+        ],
+        github: 'https://github.com/sheraz61/Expense-Manager',
+
+    },
 ]

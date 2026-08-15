@@ -1,4 +1,7 @@
+"use client"
+
 import Link from 'next/link'
+import { useState } from 'react'
 import {
     ArrowUpRightIcon,
     ExternalLinkIcon,
@@ -7,6 +10,9 @@ import { FaGithub } from 'react-icons/fa'
 import { projects } from '../../lib/projects-data'
 
 export function ProjectListSection() {
+    const [visibleCount, setVisibleCount] = useState(4)
+    const visibleProjects = projects.slice(0, visibleCount)
+
     return (
         <section className="border-b border-border">
             <div className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
@@ -28,16 +34,16 @@ export function ProjectListSection() {
                 </div>
 
                 {/* Projects */}
-                <div className="mt-16 space-y-20 sm:mt-20 sm:space-y-28">
+                <div className="mt-12 flex flex-col gap-10 sm:mt-16 sm:gap-14">
 
-                    {projects.map((project, index) => {
+                    {visibleProjects.map((project, index) => {
                         const isFeatured = index === 0
 
                         return (
                             <article
                                 key={project.slug}
                                 id={project.slug}
-                                className="group scroll-mt-24"
+                                className="group scroll-mt-24 border-b border-border pb-10 sm:pb-14 last:border-0 last:pb-0"
                             >
                                 {/* Project Number */}
                                 <div className="mb-5 flex items-center gap-3">
@@ -163,14 +169,21 @@ export function ProjectListSection() {
                                     </div>
                                 </div>
 
-                                {/* Divider */}
-                                {index !== projects.length - 1 && (
-                                    <div className="mt-16 border-b border-border sm:mt-24" />
-                                )}
                             </article>
                         )
                     })}
                 </div>
+
+                {visibleCount < projects.length && (
+                    <div className="mt-16 flex justify-center sm:mt-24">
+                        <button
+                            onClick={() => setVisibleCount((prev) => prev + 3)}
+                            className="inline-flex h-11 items-center justify-center rounded-md border border-border bg-background px-8 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                        >
+                            Load more projects
+                        </button>
+                    </div>
+                )}
             </div>
         </section>
     )
