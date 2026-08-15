@@ -3,23 +3,29 @@ import { ArrowRightIcon, ArrowUpRightIcon } from 'lucide-react'
 import { posts } from '@/lib/blog-data'
 
 export function ArticlesSection() {
-    // Only show the first 3 articles on the home page
     const recentArticles = posts.slice(0, 3)
 
     return (
         <section id="writing" className="border-b border-border">
             <div className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
 
-                {/* Section header */}
-                <div className="flex items-end justify-between gap-4">
+                {/* Header */}
+                <div className="flex items-end justify-between gap-6">
                     <div>
                         <p className="font-mono text-xs uppercase tracking-wider text-primary">
                             Writing
                         </p>
+
                         <h2 className="mt-3 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-                            Recent articles
+                            Things I&apos;ve been learning
                         </h2>
+
+                        <p className="mt-4 max-w-xl text-pretty leading-relaxed text-muted-foreground">
+                            Notes and deep dives on the technologies, concepts,
+                            and engineering problems I&apos;ve been exploring.
+                        </p>
                     </div>
+
                     <Link
                         href="/blog"
                         className="hidden shrink-0 items-center gap-1 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground sm:flex"
@@ -29,49 +35,50 @@ export function ArticlesSection() {
                     </Link>
                 </div>
 
-                {/* Article list */}
+                {/* Articles */}
                 <div className="mt-10 divide-y divide-border border-y border-border">
                     {recentArticles.map((article) => (
-                        <div
+                        <article
                             key={article.link}
-                            className="flex items-start justify-between gap-6 py-5"
+                            className="group py-6 sm:py-7"
                         >
-                            {/* Left — tag + title */}
-                            <div className="flex flex-col gap-1.5">
-                                <span className="w-fit rounded-md bg-muted px-2 py-0.5 font-mono text-[11px] text-muted-foreground">
-                                    {article.tags[0]}
-                                </span>
-                                <a
-                                    href={article.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-sm font-medium leading-snug text-foreground transition-colors hover:text-primary"
-                                >
-                                    {article.title}
-                                </a>
-                            </div>
+                            <a
+                                href={article.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block"
+                            >
+                                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between sm:gap-8">
 
-                            {/* Right — read time + link */}
-                            <div className="flex shrink-0 flex-col items-end gap-1.5 pt-0.5">
-                                <span className="font-mono text-[11px] text-muted-foreground/70">
-                                    {article.readTime}
-                                </span>
-                                <a
-                                    href={article.link}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="flex items-center gap-0.5 font-mono text-[11px] text-muted-foreground/70 underline-offset-2 transition-colors hover:text-foreground hover:underline"
-                                >
-                                    Read on Medium
-                                    <ArrowUpRightIcon className="size-3" />
-                                </a>
-                            </div>
-                        </div>
+                                    {/* Article content */}
+                                    <div className="min-w-0">
+
+                                        {/* Metadata */}
+                                        <div className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[10px] uppercase tracking-wider text-muted-foreground/70">
+                                            <span>{article.tags[0]}</span>
+                                            <span aria-hidden="true">·</span>
+                                            <span>{article.date}</span>
+                                            <span aria-hidden="true">·</span>
+                                            <span>{article.readTime}</span>
+                                        </div>
+
+                                        {/* Title */}
+                                        <h3 className="mt-2 max-w-3xl text-base font-medium leading-relaxed text-foreground transition-colors group-hover:text-primary sm:text-lg">
+                                            {article.title}
+                                        </h3>
+                                    </div>
+
+                                    {/* Arrow */}
+                                    <div className="hidden shrink-0 sm:block">
+                                        <ArrowUpRightIcon className="size-4 text-muted-foreground transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
+                                    </div>
+                                </div>
+                            </a>
+                        </article>
                     ))}
                 </div>
 
-
-                {/* Mobile — blog link */}
+                {/* Mobile link */}
                 <Link
                     href="/blog"
                     className="mt-6 flex items-center gap-1 font-mono text-xs text-muted-foreground transition-colors hover:text-foreground sm:hidden"

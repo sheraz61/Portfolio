@@ -36,7 +36,8 @@ export function ProjectListSection() {
                         return (
                             <article
                                 key={project.slug}
-                                className="group"
+                                id={project.slug}
+                                className="group scroll-mt-24"
                             >
                                 {/* Project Number */}
                                 <div className="mb-5 flex items-center gap-3">
@@ -121,13 +122,7 @@ export function ProjectListSection() {
                                         </a>
                                     )}
 
-                                    {/* <Link
-                                        href={`/projects/${project.slug}`}
-                                        className="inline-flex items-center gap-1.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                                    >
-                                        Case study
-                                        <ArrowUpRightIcon className="size-3.5" />
-                                    </Link> */}
+
                                 </div>
 
                                 {/* Engineering Highlights */}
