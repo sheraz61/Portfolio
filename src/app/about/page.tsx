@@ -1,16 +1,18 @@
-import ContactButton from "@/components/ContactButton";
+import type { Metadata } from 'next'
+import { StorySection } from '@/components/about/story-section'
+import { LookingForSection } from '@/components/about/looking-for-section'
 
-export default function About() {
-  return (
-    <main className="min-h-screen px-6 py-16 max-w-2xl mx-auto">
-      <h1 className="text-3xl font-bold mb-4">About Me</h1>
-      <p className="text-gray-600 leading-relaxed">
-        I&apos;m a MERN Stack Developer with a growing interest in AI. I build
-        scalable, production ready web applications using React, Next.js,
-        Node.js, Express, and MongoDB.
-      </p>
+export const metadata: Metadata = {
+    title: 'About — Sheraz Hussain',
+    description:
+        "Full-stack MERN and Next.js developer from the University of Sargodha. The story behind InterviewPrep, CampusGuard, and Vendora — and what I'm looking for next.",
+}
 
-      <ContactButton />
-    </main>
-  );
+export default function AboutPage() {
+    return (
+        <main>
+            <StorySection />
+            <LookingForSection />
+        </main>
+    )
 }
