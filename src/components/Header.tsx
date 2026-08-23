@@ -3,7 +3,7 @@
 import * as React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { MenuIcon, XIcon } from 'lucide-react'
+import { MenuIcon, XIcon, ArrowUpRightIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import {
@@ -36,9 +36,9 @@ export function Header() {
                     aria-label="Sheraz Hussain — home"
                 >
                     <div className="relative flex size-8 shrink-0 items-center justify-center rounded-full border border-border transition-colors group-hover:border-online/60">
-                        <img 
-                            src="/logo.jpg" 
-                            alt="Sheraz Hussain" 
+                        <img
+                            src="/logo.jpg"
+                            alt="Sheraz Hussain"
                             className="size-full rounded-full object-cover"
                         />
                         <span className="absolute -right-0.5 -top-0.5 flex size-2.5 items-center justify-center">
@@ -76,7 +76,16 @@ export function Header() {
                     })}
                 </nav>
 
-                <div className="flex items-center gap-1">
+                <div className="flex items-center gap-2">
+                    <a
+                        href="/resume.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hidden md:inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-foreground hover:text-foreground"
+                    >
+                        Resume
+                        <ArrowUpRightIcon className="size-3" />
+                    </a>
                     <ThemeToggle />
 
                     <Sheet open={open} onOpenChange={setOpen}>
@@ -101,9 +110,9 @@ export function Header() {
                                         onClick={() => setOpen(false)}
                                     >
                                         <div className="relative flex size-8 shrink-0 items-center justify-center rounded-full border border-border transition-colors group-hover:border-online/60">
-                                            <img 
-                                                src="/logo.jpg" 
-                                                alt="Sheraz Hussain" 
+                                            <img
+                                                src="/logo.jpg"
+                                                alt="Sheraz Hussain"
                                                 className="size-full rounded-full object-cover"
                                             />
                                             <span className="absolute -right-0.5 -top-0.5 flex size-2.5 items-center justify-center">
@@ -130,27 +139,37 @@ export function Header() {
                                     </SheetClose>
                                 </div>
                                 <nav className="flex flex-col gap-2 px-6 pb-6 pt-4">
-                                {navLinks.map((link) => {
-                                    const isActive = pathname === link.href
-                                    return (
-                                        <SheetClose
-                                            key={link.href}
-                                            nativeButton={false}
-                                            render={
-                                                <Link
-                                                    href={link.href}
-                                                    className={cn(
-                                                        'rounded-md px-2 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground',
-                                                        isActive && 'text-foreground'
-                                                    )}
-                                                    aria-current={isActive ? 'page' : undefined}
-                                                />
-                                            }
-                                        >
-                                            {link.label}
-                                        </SheetClose>
+                                    {navLinks.map((link) => {
+                                        const isActive = pathname === link.href
+                                        return (
+                                            <SheetClose
+                                                key={link.href}
+                                                nativeButton={false}
+                                                render={
+                                                    <Link
+                                                        href={link.href}
+                                                        className={cn(
+                                                            'rounded-md px-2 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground',
+                                                            isActive && 'text-foreground'
+                                                        )}
+                                                        aria-current={isActive ? 'page' : undefined}
+                                                    />
+                                                }
+                                            >
+                                                {link.label}
+                                            </SheetClose>
                                         )
                                     })}
+                                    <a
+                                        href="/resume.pdf"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-2 rounded-md px-2 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                                        onClick={() => setOpen(false)}
+                                    >
+                                        Resume
+                                        <ArrowUpRightIcon className="size-3.5" />
+                                    </a>
                                 </nav>
                             </div>
                         </SheetContent>
