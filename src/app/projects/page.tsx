@@ -5,7 +5,7 @@ import { ContactSection } from '@/components/home/contact-section'
 export const metadata: Metadata = {
     title: 'Projects — Sheraz Hussain',
     description:
-        'InterviewPrep, CampusGuard, and Vendora — three full-stack builds spanning AI products, deep learning systems, and real-time marketplaces.',
+        'LearnEx, InterviewPrep, CampusGuard, and Vendora — full-stack builds spanning e-learning platforms, AI products, deep learning systems, and real-time marketplaces.',
 }
 
 export default function ProjectsPage() {
