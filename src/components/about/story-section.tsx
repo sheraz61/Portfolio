@@ -9,7 +9,7 @@ const timeline = [
         period: '2022 — 2026',
         title: 'BS Software Engineering',
         place: 'University of Sargodha',
-        detail: 'CGPA 3.76 / 4.00',
+        detail: 'CGPA 3.75 / 4.00',
     },
     {
         period: '2024',
