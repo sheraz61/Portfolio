@@ -33,7 +33,7 @@ export function Header() {
                 <Link
                     href="/"
                     className="group flex items-center gap-2"
-                    aria-label="Sheraz Hussain — home"
+                    aria-label="Sheraz Hussain Home"
                 >
                     <div className="relative flex size-8 shrink-0 items-center justify-center rounded-full border border-border transition-colors group-hover:border-online/60">
                         <img

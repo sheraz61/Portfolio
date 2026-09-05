@@ -3,9 +3,9 @@ import { StorySection } from '@/components/about/story-section'
 import { LookingForSection } from '@/components/about/looking-for-section'
 
 export const metadata: Metadata = {
-    title: 'About — Sheraz Hussain',
+    title: 'About | Sheraz Hussain',
     description:
-        "Full-stack MERN and Next.js developer from the University of Sargodha. The story behind InterviewPrep, CampusGuard, and Vendora — and what I'm looking for next.",
+        "Full-stack MERN and Next.js developer from the University of Sargodha. The story behind LearnEx, CampusGuard, and Vendora and what I'm looking for next.",
 }
 
 export default function AboutPage() {
