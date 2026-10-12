@@ -66,6 +66,12 @@ export function ArticlesSection() {
                                         <h3 className="mt-2 max-w-3xl text-base font-medium leading-relaxed text-foreground transition-colors group-hover:text-primary sm:text-lg">
                                             {article.title}
                                         </h3>
+
+                                        {article.description && (
+                                            <p className="mt-1.5 max-w-2xl text-xs text-muted-foreground line-clamp-1">
+                                                {article.description}
+                                            </p>
+                                        )}
                                     </div>
 
                                     {/* Arrow */}

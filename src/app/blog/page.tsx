@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import { PostListSection } from '@/components/blog/post-list-section'
 
 export const metadata: Metadata = {
-    title: 'Blog | Sheraz Hussain',
+    title: 'Blog & System Design | Sheraz Hussain',
     description:
-        'Write-ups on architecture, backend systems, and the projects behind Mockly, CampusGuard, and Vendora.',
+        'In-depth write-ups on distributed systems, load shedding, retry storms, backend resilience, and modern Next.js/React engineering.',
 }
 
 export default function BlogPage() {

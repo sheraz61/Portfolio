@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: 'Sheraz Hussain',
   description: 'Software engineer building full-stack applications.',
   icons: {
-    icon: '/logo.jpg',
+    icon: '/logo.png',
   },
 
 }

@@ -37,7 +37,7 @@ export function Header() {
                 >
                     <div className="relative flex size-8 shrink-0 items-center justify-center rounded-full border border-border transition-colors group-hover:border-online/60">
                         <img
-                            src="/logo.jpg"
+                            src="/logo.png"
                             alt="Sheraz Hussain"
                             className="size-full rounded-full object-cover"
                         />
