@@ -1,13 +1,13 @@
 
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Geist_Mono, Plus_Jakarta_Sans } from 'next/font/google'
 import { Header } from '../components/Header'
 import { ThemeProvider } from '../components/theme-provider'
 import './globals.css'
 
-const geistSans = Geist({
+const jakartaSans = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  variable: '--font-geist-sans',
+  variable: '--font-jakarta-sans',
 })
 const geistMono = Geist_Mono({
   subsets: ['latin'],
@@ -37,7 +37,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${jakartaSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <body className="font-sans antialiased">
         <ThemeProvider>
           <Header />
