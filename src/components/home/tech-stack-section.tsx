@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import {
     SiTypescript,
     SiJavascript,
@@ -16,22 +17,54 @@ import {
 import { FaAws } from 'react-icons/fa'
 import type { IconType } from 'react-icons'
 
-const TECHNOLOGIES: { name: string; icon: IconType }[] = [
-    { name: 'TypeScript', icon: SiTypescript },
-    { name: 'JavaScript', icon: SiJavascript },
-    { name: 'React', icon: SiReact },
-    { name: 'Next.js', icon: SiNextdotjs },
-    { name: 'Node.js', icon: SiNodedotjs },
-    { name: 'Express', icon: SiExpress },
-    { name: 'PostgreSQL', icon: SiPostgresql },
-    { name: 'MongoDB', icon: SiMongodb },
-    { name: 'Redis', icon: SiRedis },
-    { name: 'Docker', icon: SiDocker },
-    { name: 'AWS', icon: FaAws },
-    { name: 'Git', icon: SiGit },
-    { name: 'GitHub', icon: SiGithub },
-    { name: 'Tailwind CSS', icon: SiTailwindcss },
+type Tech = {
+    name: string
+    icon: IconType
+    /** Official brand colour; `null` for black logos, which follow the theme (black / white) */
+    brand: string | null
+}
+
+/* Two rows that scroll in opposite directions */
+const ROWS: { label: string; reverse?: boolean; items: Tech[] }[] = [
+    {
+        label: 'Languages and frontend',
+        items: [
+            { name: 'TypeScript', icon: SiTypescript, brand: '#3178C6' },
+            { name: 'JavaScript', icon: SiJavascript, brand: '#F7DF1E' },
+            { name: 'React', icon: SiReact, brand: '#61DAFB' },
+            { name: 'Next.js', icon: SiNextdotjs, brand: null },
+            { name: 'Tailwind CSS', icon: SiTailwindcss, brand: '#06B6D4' },
+            { name: 'Node.js', icon: SiNodedotjs, brand: '#5FA04E' },
+            { name: 'Express', icon: SiExpress, brand: null },
+        ],
+    },
+    {
+        label: 'Data, infrastructure and tools',
+        reverse: true,
+        items: [
+            { name: 'PostgreSQL', icon: SiPostgresql, brand: '#4169E1' },
+            { name: 'MongoDB', icon: SiMongodb, brand: '#47A248' },
+            { name: 'Redis', icon: SiRedis, brand: '#FF4438' },
+            { name: 'Docker', icon: SiDocker, brand: '#2496ED' },
+            { name: 'AWS', icon: FaAws, brand: '#FF9900' },
+            { name: 'Git', icon: SiGit, brand: '#F05032' },
+            { name: 'GitHub', icon: SiGithub, brand: null },
+        ],
+    },
 ]
+
+function TechTile({ tech }: { tech: Tech }) {
+    const Icon = tech.icon
+    return (
+        <div
+            className="tech-tile"
+            style={{ '--brand': tech.brand ?? 'var(--foreground)' } as CSSProperties}
+        >
+            <Icon aria-hidden className="tech-icon" />
+            <span className="tech-label">{tech.name}</span>
+        </div>
+    )
+}
 
 export function TechStackSection() {
     return (
@@ -43,24 +76,36 @@ export function TechStackSection() {
                     Technologies &amp; Tools
                 </p>
 
-                {/* Marquee — contained within max-w */}
-                <div className="marquee-container mt-10">
-                    <div className="marquee-track">
-                        {/* First copy */}
-                        {TECHNOLOGIES.map((tech) => (
-                            <div key={`a-${tech.name}`} className="marquee-item">
-                                <tech.icon className="marquee-icon" />
-                                <span className="marquee-label">{tech.name}</span>
+                {/* Rows: each loops seamlessly. A group holds the list twice so it is always wider
+                    than the section (no gap at the end), then an aria-hidden copy of the group. */}
+                <div className="mt-10 flex flex-col gap-3">
+                    {ROWS.map((row) => (
+                        <div key={row.label} className="marquee-container">
+                            <div className={row.reverse ? 'marquee-track marquee-track--reverse' : 'marquee-track'}>
+                                {[false, true].map((isCopy) => (
+                                    <ul
+                                        key={String(isCopy)}
+                                        aria-label={isCopy ? undefined : row.label}
+                                        aria-hidden={isCopy || undefined}
+                                        className={isCopy ? 'marquee-group marquee-group--copy' : 'marquee-group'}
+                                    >
+                                        {[...row.items, ...row.items].map((tech, i) => {
+                                            const repeat = i >= row.items.length
+                                            return (
+                                                <li
+                                                    key={`${tech.name}-${i}`}
+                                                    aria-hidden={(!isCopy && repeat) || undefined}
+                                                    className={repeat ? 'marquee-repeat' : undefined}
+                                                >
+                                                    <TechTile tech={tech} />
+                                                </li>
+                                            )
+                                        })}
+                                    </ul>
+                                ))}
                             </div>
-                        ))}
-                        {/* Duplicate for seamless loop */}
-                        {TECHNOLOGIES.map((tech) => (
-                            <div key={`b-${tech.name}`} className="marquee-item" aria-hidden="true">
-                                <tech.icon className="marquee-icon" />
-                                <span className="marquee-label">{tech.name}</span>
-                            </div>
-                        ))}
-                    </div>
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>

@@ -181,77 +181,148 @@
   50%      { opacity: 0; }
 }
 
-/* ─── Marquee / Infinite Scroll ─── */
+/* ─── Tech stack: two-row marquee of monochrome tiles ─── */
 .marquee-container {
   position: relative;
   width: 100%;
   overflow: hidden;
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
+  /* room for the hover lift and glow, which overflow would otherwise clip */
+  padding-block: 6px;
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 
 .marquee-track {
   display: flex;
-  align-items: center;
-  gap: 40px;
   width: max-content;
-  animation: marquee-scroll 40s linear infinite;
+  animation: marquee-scroll 45s linear infinite;
 }
 
-.marquee-track:hover {
+.marquee-track--reverse {
+  animation-direction: reverse;
+  animation-duration: 50s;
+}
+
+/* Pause a row while the pointer is on it, so tiles are easy to hover */
+.marquee-container:hover .marquee-track {
   animation-play-state: paused;
 }
 
-.marquee-item {
+/* Each group carries a trailing gap so the -50% loop lands seamlessly */
+.marquee-group {
   display: flex;
-  flex-direction: column;
+  gap: 12px;
+  padding-right: 12px;
+}
+
+.tech-tile {
+  --brand: var(--foreground);
+  position: relative;
+  display: flex;
   align-items: center;
   gap: 10px;
-  flex-shrink: 0;
+  padding: 10px 16px 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--background);
   cursor: default;
-  transition: opacity 0.2s ease;
+  isolation: isolate;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
-.marquee-item:hover {
-  opacity: 0.65;
+/* Soft glow in the brand colour, faded in on hover */
+.tech-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    120% 140% at 20% 50%,
+    color-mix(in oklch, var(--brand) 14%, transparent),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
 }
 
-.marquee-icon {
-  width: 28px;
-  height: 28px;
+.tech-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
   color: var(--muted-foreground);
-  transition: color 0.2s ease;
+  transition:
+    color 0.35s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.marquee-item:hover .marquee-icon {
-  color: var(--foreground);
-}
-
-.marquee-label {
+.tech-label {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   letter-spacing: 0.02em;
   color: var(--muted-foreground);
   white-space: nowrap;
+  transition: color 0.35s ease;
+}
+
+/* Hover (and tap on touch screens): reveal the logo's real colour */
+.tech-tile:hover,
+.tech-tile:active {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklch, var(--brand) 45%, var(--border));
+  box-shadow: 0 8px 24px -12px color-mix(in oklch, var(--brand) 55%, transparent);
+}
+
+.tech-tile:hover::before,
+.tech-tile:active::before {
+  opacity: 1;
+}
+
+.tech-tile:hover .tech-icon,
+.tech-tile:active .tech-icon {
+  color: var(--brand);
+  transform: scale(1.12);
+}
+
+.tech-tile:hover .tech-label,
+.tech-tile:active .tech-label {
+  color: var(--foreground);
 }
 
 @keyframes marquee-scroll {
-  0% {
-    transform: translateX(0);
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* No motion: stop scrolling and show each row once, centred and wrapped */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-container {
+    mask-image: none;
+    -webkit-mask-image: none;
   }
-  100% {
-    transform: translateX(-50%);
+  .marquee-track {
+    width: auto;
+    justify-content: center;
+    animation: none;
+  }
+  .marquee-group {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-right: 0;
+  }
+  .marquee-group--copy,
+  .marquee-repeat {
+    display: none;
+  }
+  .tech-tile,
+  .tech-icon {
+    transition-property: color, border-color, box-shadow;
+  }
+  .tech-tile:hover,
+  .tech-tile:active {
+    transform: none;
   }
 }
