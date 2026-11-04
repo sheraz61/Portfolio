@@ -1,6 +1,7 @@
 'use client'
 
 import * as React from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { MenuIcon, XIcon, ArrowUpRightIcon } from 'lucide-react'
@@ -10,8 +11,6 @@ import {
     Sheet,
     SheetClose,
     SheetContent,
-    SheetHeader,
-    SheetTitle,
     SheetTrigger,
 } from '@/components/ui/sheet'
 import { ThemeToggle } from '../components/theme-toggler'
@@ -23,29 +22,58 @@ const navLinks = [
     { href: '/connect', label: 'Connect' },
 ]
 
+/* True once the page is scrolled a little, so the bar can firm up over content */
+function useScrolled(threshold = 8) {
+    return React.useSyncExternalStore(
+        (onChange) => {
+            window.addEventListener('scroll', onChange, { passive: true })
+            return () => window.removeEventListener('scroll', onChange)
+        },
+        () => window.scrollY > threshold,
+        () => false
+    )
+}
+
+/* Header avatar: grayscale until hovered, with a small monochrome status dot */
+function Avatar() {
+    return (
+        <span className="relative flex size-8 shrink-0 items-center justify-center rounded-full border border-border transition-colors duration-300 group-hover:border-foreground/40">
+            <Image
+                src="/logo.png"
+                alt="Sheraz Hussain"
+                width={32}
+                height={32}
+                className="size-full rounded-full object-cover grayscale transition-[filter] duration-500 ease-out group-hover:grayscale-0"
+            />
+            <span aria-hidden className="absolute -right-0.5 -top-0.5 flex size-2.5 items-center justify-center">
+                <span className="absolute size-2.5 scale-0 animate-ping rounded-full bg-foreground opacity-0 transition-opacity duration-200 group-hover:scale-100 group-hover:opacity-50 motion-reduce:hidden" />
+                <span className="absolute size-2.5 scale-0 rounded-full bg-foreground opacity-0 ring-2 ring-background transition-all duration-200 group-hover:scale-100 group-hover:opacity-100" />
+            </span>
+        </span>
+    )
+}
+
 export function Header() {
     const pathname = usePathname()
     const [open, setOpen] = React.useState(false)
+    const scrolled = useScrolled()
 
     return (
         <header className="sticky top-4 z-40 mx-auto w-full max-w-5xl px-4 sm:px-6">
-            <div className="flex h-16 items-center justify-between rounded-2xl border border-border bg-background/80 px-4 shadow-lg shadow-black/[0.03] backdrop-blur-md sm:px-6 transition-colors duration-500 ease-in-out">
+            <div
+                className={cn(
+                    'flex h-16 items-center justify-between rounded-2xl border px-4 shadow-lg backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-500 ease-in-out sm:px-6',
+                    scrolled
+                        ? 'border-foreground/10 bg-background/90 shadow-black/[0.07] dark:shadow-black/40'
+                        : 'border-border bg-background/80 shadow-black/[0.03]'
+                )}
+            >
                 <Link
                     href="/"
                     className="group flex items-center gap-2"
                     aria-label="Sheraz Hussain Home"
                 >
-                    <div className="relative flex size-8 shrink-0 items-center justify-center rounded-full border border-border transition-colors group-hover:border-online/60">
-                        <img
-                            src="/logo.png"
-                            alt="Sheraz Hussain"
-                            className="size-full rounded-full object-cover"
-                        />
-                        <span className="absolute -right-0.5 -top-0.5 flex size-2.5 items-center justify-center">
-                            <span className="absolute size-2.5 scale-0 rounded-full bg-online opacity-0 transition-all duration-200 group-hover:scale-100 group-hover:opacity-100" />
-                            <span className="absolute size-2.5 scale-0 animate-ping rounded-full bg-online opacity-0 transition-opacity duration-200 group-hover:scale-100 group-hover:opacity-75" />
-                        </span>
-                    </div>
+                    <Avatar />
                     <span className="hidden text-sm font-medium text-foreground sm:inline-block">
                         Sheraz Hussain
                     </span>
@@ -109,17 +137,7 @@ export function Header() {
                                         className="group flex items-center gap-2"
                                         onClick={() => setOpen(false)}
                                     >
-                                        <div className="relative flex size-8 shrink-0 items-center justify-center rounded-full border border-border transition-colors group-hover:border-online/60">
-                                            <img
-                                                src="/logo.jpg"
-                                                alt="Sheraz Hussain"
-                                                className="size-full rounded-full object-cover"
-                                            />
-                                            <span className="absolute -right-0.5 -top-0.5 flex size-2.5 items-center justify-center">
-                                                <span className="absolute size-2.5 scale-0 rounded-full bg-online opacity-0 transition-all duration-200 group-hover:scale-100 group-hover:opacity-100" />
-                                                <span className="absolute size-2.5 scale-0 animate-ping rounded-full bg-online opacity-0 transition-opacity duration-200 group-hover:scale-100 group-hover:opacity-75" />
-                                            </span>
-                                        </div>
+                                        <Avatar />
                                         <span className="text-sm font-medium text-foreground">
                                             Sheraz Hussain
                                         </span>
