@@ -1,9 +1,18 @@
+import Link from 'next/link'
+
+/* In date order */
 const timeline = [
     {
         period: '2022 - 2026',
         title: 'BS Software Engineering',
         place: 'University of Sargodha',
         detail: 'CGPA 3.75 / 4.00',
+    },
+    {
+        period: '2024',
+        title: 'Meta Front-End Developer Certificate',
+        place: 'Meta · Coursera',
+        detail: 'Professional Certificate',
     },
     {
         period: '2024 - 2026',
@@ -27,15 +36,21 @@ const timeline = [
         period: '2026',
         title: 'DevWeekend Fellowship',
         place: 'Developer fellowship',
-        detail: 'Bronze Badge',
-    },
-    {
-        period: '2024',
-        title: 'Meta Front-End Developer Certificate',
-        place: 'Meta · Coursera',
-        detail: 'Professional Certificate',
+        detail: 'Silver Fellow',
     },
 ]
+
+/* Project name in the story, linking to its project page */
+function ProjectLink({ slug, children }: { slug: string; children: string }) {
+    return (
+        <Link
+            href={`/projects/${slug}`}
+            className="font-medium text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground"
+        >
+            {children}
+        </Link>
+    )
+}
 
 export function StorySection() {
     return (
@@ -43,7 +58,7 @@ export function StorySection() {
             <div className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
 
                 {/* ─── Story Header & Body ─── */}
-                <div className="w-full space-y-6 text-pretty leading-relaxed text-muted-foreground">
+                <div className="max-w-3xl space-y-6 text-pretty leading-relaxed text-muted-foreground">
 
                     {/* Page heading */}
                     <div>
@@ -96,15 +111,15 @@ export function StorySection() {
                     </p>
 
                     <p>
-                        <span className="font-medium text-foreground">LearnEx</span> is my flagship
+                        <ProjectLink slug="learnex">LearnEx</ProjectLink> is my flagship
                         full-stack e-learning ecosystem spanning three separate deployed applications:
                         a student-facing platform, a dedicated administrative dashboard, and a robust
-                        backend server. It features 38+ REST APIs, Redis caching layers, Stripe payment
+                        backend server. It features 37 REST APIs, Redis caching layers, Stripe payment
                         processing, real-time Socket.IO notifications, and 12-month Chart.js analytics.
                     </p>
 
                     <p>
-                        <span className="font-medium text-foreground">CampusGuard</span> was my
+                        <ProjectLink slug="campusguard">CampusGuard</ProjectLink> was my
                         BS final-year capstone project (awarded A+), developed under Dr. Muhammad
                         Ramzan. We collected and labeled a custom dataset of 9,000+ images across 7
                         suspicious activity classes and trained a hybrid ResNet50 + CBAM + custom head deep learning
@@ -115,14 +130,14 @@ export function StorySection() {
                     </p>
 
                     <p>
-                        With <span className="font-medium text-foreground">Mockly</span>, I built an
+                        With <ProjectLink slug="mockly">Mockly</ProjectLink>, I built an
                         AI-powered technical interview platform featuring Google Gemini AI evaluations,
                         real-time voice transcription via the Web Speech API, and interactive analytics
                         dashboards.
                     </p>
 
                     <p>
-                        With <span className="font-medium text-foreground">Vendora</span>, I architected
+                        With <ProjectLink slug="vendora">Vendora</ProjectLink>, I architected
                         a production-grade multi-vendor marketplace across four deployment units,
                         engineering autonomous seller storefronts, dual Stripe and PayPal payment flows,
                         and a dedicated Socket.io microservice for instant buyer-seller messaging.
@@ -140,13 +155,16 @@ export function StorySection() {
 
                     <p>
                         I spend my time studying distributed systems literature, working through{' '}
-                        <span className="italic text-foreground">
+                        <Link
+                            href="/blog#ddia"
+                            className="italic text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground"
+                        >
                             Designing Data-Intensive Applications
-                        </span>
+                        </Link>
                         , practicing problem-solving on LeetCode, and building software that lasts.
                     </p>
 
-                    <blockquote className="border-l-2 border-primary pl-4 text-foreground italic">
+                    <blockquote className="!mt-10 border-l-2 border-primary pl-5 text-lg text-foreground italic sm:text-xl">
                         Whether cultivating a field or designing a backend, good engineering comes down
                         to the same core principle: build solid foundations, eliminate bottlenecks, and
                         respect the details.
