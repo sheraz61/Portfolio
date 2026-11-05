@@ -14,7 +14,7 @@ export function LookingForSection() {
                     The right next step
                 </h2>
 
-                <div className="mt-6 max-w-2xl space-y-5 text-pretty leading-relaxed text-muted-foreground">
+                <div className="mt-6 max-w-2xl space-y-5 text-pretty leading-relaxed text-muted-foreground lg:max-w-none lg:text-justify">
                     <p>
                         I am a fresh graduate looking for a software engineering role where I can
                         work on real problems, take real ownership, and keep getting better at my

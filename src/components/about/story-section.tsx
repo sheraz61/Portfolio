@@ -58,7 +58,7 @@ export function StorySection() {
             <div className="mx-auto max-w-5xl px-6 py-16 sm:py-24">
 
                 {/* ─── Story Header & Body ─── */}
-                <div className="max-w-3xl space-y-6 text-pretty leading-relaxed text-muted-foreground">
+                <div className="max-w-3xl space-y-6 text-pretty leading-relaxed text-muted-foreground lg:max-w-none lg:text-justify">
 
                     {/* Page heading */}
                     <div>
