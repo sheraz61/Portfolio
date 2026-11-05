@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState, useSyncExternalStore, type PointerEvent } from 'react'
+import { useEffect, useRef, useState, useSyncExternalStore, type PointerEvent, type ReactNode } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRightIcon, ArrowUpRightIcon, FileTextIcon } from 'lucide-react'
@@ -69,7 +69,8 @@ function CropMarks() {
     )
 }
 
-export function HeroSection() {
+/** `activity` is the GitHub contributions widget, rendered on the server and shown on phones only. */
+export function HeroSection({ activity }: { activity?: ReactNode }) {
     const reducedMotion = usePrefersReducedMotion()
     const typed = useTypewriter(PHRASES, !reducedMotion)
     const cardRef = useRef<HTMLDivElement>(null)
@@ -197,6 +198,9 @@ export function HeroSection() {
                                 <ArrowUpRightIcon className="size-3 transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5" />
                             </a>
                         </div>
+
+                        {/* GitHub activity: phones only (on larger screens the portrait takes this space) */}
+                        {activity && <div className="mt-10 md:hidden">{activity}</div>}
                     </div>
                 </div>
             </div>
