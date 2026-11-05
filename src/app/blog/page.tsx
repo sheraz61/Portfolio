@@ -1,16 +1,20 @@
 import type { Metadata } from 'next'
-import { PostListSection } from '@/components/blog/post-list-section'
+import { BlogSection } from '@/components/blog/blog-section'
+import { getArticles } from '@/lib/articles'
 
 export const metadata: Metadata = {
-    title: 'Blog & System Design | Sheraz Hussain',
+    title: 'Writing | Sheraz Hussain',
     description:
-        'In-depth write-ups on distributed systems, load shedding, retry storms, backend resilience, and modern Next.js/React engineering.',
+        'Chapter notes from Designing Data-Intensive Applications (2nd edition) and deep dives on system design, backend, frontend and DevOps.',
 }
 
-export default function BlogPage() {
+export default async function BlogPage() {
+    // Latest posts come from the Medium feed (refreshed every 6 hours), older ones from the saved archive
+    const articles = await getArticles()
+
     return (
         <main>
-            <PostListSection />
+            <BlogSection articles={articles} />
         </main>
     )
 }

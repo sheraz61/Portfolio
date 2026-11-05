@@ -7,7 +7,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-jakarta-sans);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-sans);
   --color-sidebar-ring: var(--sidebar-ring);
@@ -129,232 +129,227 @@
   }
 }
 
-/* ─── Code Editor: Syntax highlighting tokens ─── */
-:root {
-  --code-bg: oklch(0.96 0.005 260);
-  --code-border: oklch(0.90 0.01 260);
-  --code-titlebar: oklch(0.94 0.008 260);
-  --code-line-number: oklch(0.65 0 0);
-  --code-keyword: oklch(0.50 0.20 300);
-  --code-variable: oklch(0.45 0.15 230);
-  --code-property: oklch(0.50 0.12 60);
-  --code-string: oklch(0.50 0.18 150);
-  --code-boolean: oklch(0.55 0.22 30);
-  --code-number: oklch(0.55 0.20 30);
-  --code-function: oklch(0.50 0.18 280);
-  --code-punctuation: oklch(0.50 0.02 260);
-  --code-cursor-color: oklch(0.50 0.20 260);
+/* ─── Hero: dotted grid backdrop (monochrome, fades toward the edges) ─── */
+.hero-grid {
+  background-image: radial-gradient(
+    color-mix(in oklch, var(--foreground) 14%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 22px 22px;
+  mask-image: radial-gradient(ellipse 60% 70% at 70% 45%, black 25%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at 70% 45%, black 25%, transparent 75%);
 }
 
-.dark {
-  --code-bg: oklch(0.18 0.015 260);
-  --code-border: oklch(0.28 0.02 260);
-  --code-titlebar: oklch(0.22 0.015 260);
-  --code-line-number: oklch(0.45 0.01 260);
-  --code-keyword: oklch(0.75 0.18 300);
-  --code-variable: oklch(0.72 0.15 200);
-  --code-property: oklch(0.80 0.14 80);
-  --code-string: oklch(0.75 0.20 150);
-  --code-boolean: oklch(0.78 0.20 50);
-  --code-number: oklch(0.78 0.20 50);
-  --code-function: oklch(0.78 0.18 280);
-  --code-punctuation: oklch(0.68 0.02 260);
-  --code-cursor-color: oklch(0.75 0.18 260);
+/* ─── Hero: portrait tilt, sheen and typing caret ─── */
+.hero-portrait {
+  --rx: 0deg;
+  --ry: 0deg;
+  --mx: 50%;
+  --my: 30%;
+  transform: perspective(900px) rotateX(var(--rx)) rotateY(var(--ry));
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
 
-/* ─── Code Editor: Card ─── */
-.code-editor-card {
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--code-border);
-  background: var(--code-bg);
-  box-shadow:
-    0 4px 24px oklch(0 0 0 / 6%),
-    0 1px 4px oklch(0 0 0 / 4%);
-  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+.hero-portrait-sheen {
+  background: radial-gradient(
+    circle at var(--mx) var(--my),
+    oklch(1 0 0 / 22%),
+    transparent 55%
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 
-.dark .code-editor-card {
-  box-shadow:
-    0 4px 32px oklch(0 0 0 / 30%),
-    0 1px 4px oklch(0 0 0 / 20%),
-    inset 0 1px 0 oklch(1 0 0 / 4%);
+.hero-portrait:hover .hero-portrait-sheen {
+  opacity: 1;
 }
 
-.code-editor-card:hover {
-  box-shadow:
-    0 8px 32px oklch(0 0 0 / 10%),
-    0 2px 8px oklch(0 0 0 / 6%);
-}
-
-.dark .code-editor-card:hover {
-  box-shadow:
-    0 8px 40px oklch(0 0 0 / 40%),
-    0 2px 8px oklch(0 0 0 / 25%),
-    inset 0 1px 0 oklch(1 0 0 / 6%);
-  border-color: oklch(0.35 0.03 260);
-}
-
-/* ─── Code Editor: Title bar ─── */
-.code-editor-titlebar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 14px;
-  background: var(--code-titlebar);
-  border-bottom: 1px solid var(--code-border);
-}
-
-.code-editor-dots {
-  display: flex;
-  gap: 6px;
-}
-
-.code-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: oklch(0.75 0 0);
-}
-
-.code-dot--red   { background: oklch(0.65 0.22 25); }
-.code-dot--yellow { background: oklch(0.82 0.16 90); }
-.code-dot--green  { background: oklch(0.72 0.20 145); }
-
-.code-editor-filename {
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.03em;
-  color: var(--code-line-number);
-}
-
-/* ─── Code Editor: Body ─── */
-.code-editor-body {
-  padding: 10px 0;
-  overflow-x: auto;
-}
-
-.code-editor-pre {
-  font-family: var(--font-mono);
-  font-size: 0.73rem;
-  line-height: 1.65;
-  margin: 0;
-}
-
-/* ─── Code Editor: Lines ─── */
-.code-line {
-  display: flex;
-  align-items: center;
-  padding: 0 12px;
-  position: relative;
-}
-
-.code-line:hover {
-  background: oklch(0 0 0 / 3%);
-}
-
-.dark .code-line:hover {
-  background: oklch(1 0 0 / 3%);
-}
-
-.code-line-number {
-  width: 22px;
-  flex-shrink: 0;
-  text-align: right;
-  margin-right: 12px;
-  color: var(--code-line-number);
-  font-size: 0.65rem;
-  user-select: none;
-  opacity: 0.7;
-}
-
-/* ─── Code Editor: Blinking cursor ─── */
-.code-cursor {
+.hero-caret {
   display: inline-block;
-  width: 2px;
-  height: 1em;
-  margin-left: 2px;
-  background-color: var(--code-cursor-color);
-  animation: cursor-blink 1s steps(1) infinite;
-  vertical-align: text-bottom;
+  width: 3px;
+  height: 0.95em;
+  margin-left: 3px;
+  vertical-align: -0.1em;
+  background: currentColor;
+  animation: hero-caret-blink 1s steps(1) infinite;
 }
 
-@keyframes cursor-blink {
+@keyframes hero-caret-blink {
   0%, 100% { opacity: 1; }
   50%      { opacity: 0; }
 }
 
-/* ─── Marquee / Infinite Scroll ─── */
+/* ─── Tech stack: two-row marquee of monochrome tiles ─── */
 .marquee-container {
   position: relative;
   width: 100%;
   overflow: hidden;
-  mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
-  -webkit-mask-image: linear-gradient(
-    to right,
-    transparent 0%,
-    black 10%,
-    black 90%,
-    transparent 100%
-  );
+  /* room for the hover lift and glow, which overflow would otherwise clip */
+  padding-block: 6px;
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
 }
 
 .marquee-track {
   display: flex;
-  align-items: center;
-  gap: 40px;
   width: max-content;
-  animation: marquee-scroll 40s linear infinite;
+  animation: marquee-scroll 45s linear infinite;
 }
 
-.marquee-track:hover {
+.marquee-track--reverse {
+  animation-direction: reverse;
+  animation-duration: 50s;
+}
+
+/* Pause a row while the pointer is on it, so tiles are easy to hover */
+.marquee-container:hover .marquee-track {
   animation-play-state: paused;
 }
 
-.marquee-item {
+/* Each group carries a trailing gap so the -50% loop lands seamlessly */
+.marquee-group {
   display: flex;
-  flex-direction: column;
+  gap: 12px;
+  padding-right: 12px;
+}
+
+.tech-tile {
+  --brand: var(--foreground);
+  position: relative;
+  display: flex;
   align-items: center;
   gap: 10px;
-  flex-shrink: 0;
+  padding: 10px 16px 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--background);
   cursor: default;
-  transition: opacity 0.2s ease;
+  isolation: isolate;
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
-.marquee-item:hover {
-  opacity: 0.65;
+/* Soft glow in the brand colour, faded in on hover */
+.tech-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(
+    120% 140% at 20% 50%,
+    color-mix(in oklch, var(--brand) 14%, transparent),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.35s ease;
 }
 
-.marquee-icon {
-  width: 28px;
-  height: 28px;
+.tech-icon {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
   color: var(--muted-foreground);
-  transition: color 0.2s ease;
+  transition:
+    color 0.35s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-.marquee-item:hover .marquee-icon {
-  color: var(--foreground);
-}
-
-.marquee-label {
+.tech-label {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   letter-spacing: 0.02em;
   color: var(--muted-foreground);
   white-space: nowrap;
+  transition: color 0.35s ease;
+}
+
+/* Hover (and tap on touch screens): reveal the logo's real colour */
+.tech-tile:hover,
+.tech-tile:active {
+  transform: translateY(-2px);
+  border-color: color-mix(in oklch, var(--brand) 45%, var(--border));
+  box-shadow: 0 8px 24px -12px color-mix(in oklch, var(--brand) 55%, transparent);
+}
+
+.tech-tile:hover::before,
+.tech-tile:active::before {
+  opacity: 1;
+}
+
+.tech-tile:hover .tech-icon,
+.tech-tile:active .tech-icon {
+  color: var(--brand);
+  transform: scale(1.12);
+}
+
+.tech-tile:hover .tech-label,
+.tech-tile:active .tech-label {
+  color: var(--foreground);
 }
 
 @keyframes marquee-scroll {
-  0% {
-    transform: translateX(0);
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* No motion: stop scrolling and show each row once, centred and wrapped */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-container {
+    mask-image: none;
+    -webkit-mask-image: none;
   }
-  100% {
-    transform: translateX(-50%);
+  .marquee-track {
+    width: auto;
+    justify-content: center;
+    animation: none;
   }
+  .marquee-group {
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-right: 0;
+  }
+  .marquee-group--copy,
+  .marquee-repeat {
+    display: none;
+  }
+  .tech-tile,
+  .tech-icon {
+    transition-property: color, border-color, box-shadow;
+  }
+  .tech-tile:hover,
+  .tech-tile:active {
+    transform: none;
+  }
+}
+
+/* ─── Writing: article covers ─── */
+/* Grayscale until the card (a parent .group) is hovered, like the project screenshots */
+.article-cover {
+  filter: grayscale(1);
+  transition:
+    filter 0.6s ease,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .article-cover {
+  filter: grayscale(0);
+  transform: scale(1.03);
+}
+
+/* Touch screens have no hover: show the real colours */
+@media (hover: none) {
+  .article-cover {
+    filter: none;
+  }
+}
+
+/* Dot texture on generated covers (always dark, like the Medium covers) */
+.article-cover-dots {
+  background-image: radial-gradient(rgb(255 255 255 / 0.08) 1px, transparent 1px);
+  background-size: 14px 14px;
 }
