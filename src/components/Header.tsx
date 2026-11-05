@@ -18,6 +18,7 @@ import { ThemeToggle } from '../components/theme-toggler'
 const navLinks = [
     { href: '/about', label: 'About' },
     { href: '/projects', label: 'Projects' },
+    { href: '/open-source', label: 'Open Source' },
     { href: '/blog', label: 'Blog' },
     { href: '/connect', label: 'Connect' },
 ]
@@ -74,7 +75,7 @@ export function Header() {
                     aria-label="Sheraz Hussain Home"
                 >
                     <Avatar />
-                    <span className="hidden text-sm font-medium text-foreground sm:inline-block">
+                    <span className="hidden whitespace-nowrap text-sm font-medium text-foreground sm:inline-block md:hidden lg:inline-block">
                         Sheraz Hussain
                     </span>
                 </Link>
@@ -87,7 +88,7 @@ export function Header() {
                                 key={link.href}
                                 href={link.href}
                                 className={cn(
-                                    'group relative rounded-full px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground',
+                                    'group relative whitespace-nowrap rounded-full px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground',
                                     isActive && 'text-foreground'
                                 )}
                                 aria-current={isActive ? 'page' : undefined}
