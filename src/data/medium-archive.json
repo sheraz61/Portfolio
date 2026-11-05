@@ -1,0 +1,290 @@
+[
+  {
+    "id": "9a4af87e155f",
+    "title": "The Three Questions Every Data System Has to Answer Before It Breaks",
+    "link": "https://sheraz12.medium.com/the-three-questions-every-data-system-has-to-answer-before-it-breaks-9a4af87e155f",
+    "date": "2026-11-04",
+    "readMinutes": 12,
+    "description": "A system that works correctly today is not a promise. It is a snapshot. Load increases. Hardware fails. A developer changes one line of code and quietly breaks an assumption that was never written down.",
+    "tags": [
+      "Distributed Systems",
+      "DDIA",
+      "Software Development",
+      "Software Engineering",
+      "System Design Concepts"
+    ],
+    "mediumTags": [
+      "distributed-systems",
+      "dia-d",
+      "software-development",
+      "software-engineering",
+      "system-design-concepts"
+    ],
+    "cover": "https://cdn-images-1.medium.com/max/1024/1*jalitVxRmeh49Z38nSlRlQ.png"
+  },
+  {
+    "id": "990918bb0dfc",
+    "title": "Why Your Average Response Time Is Lying to You",
+    "link": "https://sheraz12.medium.com/why-your-average-response-time-is-lying-to-you-990918bb0dfc",
+    "date": "2026-10-30",
+    "readMinutes": 8,
+    "description": "A pizza shop hangs a sign in its window. Average delivery time, 25 minutes. Last Friday, one customer waited two hours for a cold pie. Both of those facts are true at the same time.",
+    "tags": [
+      "System Design Interview",
+      "DDIA",
+      "System Design Concepts",
+      "Design Systems",
+      "Distributed Systems"
+    ],
+    "mediumTags": [
+      "system-design-interview",
+      "dia-d",
+      "system-design-concepts",
+      "design-systems",
+      "distributed-systems"
+    ],
+    "cover": "https://cdn-images-1.medium.com/max/1024/1*QRZUpUKAH-OU2HBn4C3zYw.png"
+  },
+  {
+    "id": "e3e3a619f437",
+    "title": "Why a Server Saying No on Purpose Can Be the Healthiest Thing It Does",
+    "link": "https://sheraz12.medium.com/why-a-server-saying-no-on-purpose-can-be-the-healthiest-thing-it-does-e3e3a619f437",
+    "date": "2026-10-04",
+    "readMinutes": 8,
+    "description": "Why intentional rejection protects overall system viability: understanding backpressure, rate-limiting, and load shedding to avoid catastrophic crashes when incoming traffic peaks.",
+    "tags": [
+      "System Design",
+      "Backpressure",
+      "Load Shedding",
+      "Architecture"
+    ],
+    "mediumTags": [
+      "distributed-systems",
+      "dia-d",
+      "system-design-interview",
+      "software-engineering",
+      "system-design-concepts"
+    ],
+    "cover": "https://cdn-images-1.medium.com/max/1024/1*ZzBmNQa8nDU5K8YuZlBxeg.png"
+  },
+  {
+    "id": "919ff0972eee",
+    "title": "Why a Poorly Scoped Circuit Breaker Can Turn a Small Failure Into a Big One",
+    "link": "https://sheraz12.medium.com/why-a-poorly-scoped-circuit-breaker-can-turn-a-small-failure-into-a-big-one-919ff0972eee",
+    "date": "2026-09-29",
+    "readMinutes": 6,
+    "description": "The anatomy of blast radiuses: how over-eager or broadly scoped circuit breakers turn localized component errors into widespread system outages, and how to scope fault boundaries properly.",
+    "tags": [
+      "Reliability",
+      "Circuit Breakers",
+      "Distributed Systems",
+      "Architecture"
+    ],
+    "mediumTags": [
+      "software-engineering",
+      "distributed-systems",
+      "dia-d",
+      "system-design-interview",
+      "software-development"
+    ],
+    "cover": "https://cdn-images-1.medium.com/max/1024/1*ekbLqa8p-gIlzihKm3L4tA.png"
+  },
+  {
+    "id": "b6894c07c31f",
+    "title": "Why Retrying a Failed Request Can Make Everything Worse",
+    "link": "https://sheraz12.medium.com/why-retrying-a-failed-request-can-make-everything-worse-b6894c07c31f",
+    "date": "2026-09-27",
+    "readMinutes": 7,
+    "description": "Exploring retry storms and metastable failure states: why intuitive client-side retries amplify backend saturation, and why simple backoff with jitter is not always enough.",
+    "tags": [
+      "Distributed Systems",
+      "Resilience",
+      "Metastable Failure",
+      "Performance"
+    ],
+    "mediumTags": [
+      "system-design-concepts",
+      "distributed-systems",
+      "software-development",
+      "dia-d",
+      "system-design-interview"
+    ],
+    "cover": "https://cdn-images-1.medium.com/max/1024/1*0UoUbQaP0Ij-gjVjfVNK7A.png"
+  },
+  {
+    "id": "21be16fb7ba0",
+    "title": "Why One Post From a Celebrity Can Break a Database",
+    "link": "https://sheraz12.medium.com/why-one-post-from-a-celebrity-can-break-a-database-21be16fb7ba0",
+    "date": "2026-09-21",
+    "readMinutes": 7,
+    "description": "The viral fan-out dilemma: how an unexpected surge in follower interactions causes database hot-partitioning, cache invalidation stampedes, and write lock contention.",
+    "tags": [
+      "Databases",
+      "Scalability",
+      "High Traffic",
+      "Distributed Systems"
+    ],
+    "mediumTags": [
+      "design-systems",
+      "system-design-interview",
+      "data-engineering",
+      "distributed-ledgers",
+      "dia-d"
+    ],
+    "cover": "https://cdn-images-1.medium.com/max/1024/1*HLzfRpW4QyjQirgqkOlGWg.png"
+  },
+  {
+    "id": "268f2e662fda",
+    "title": "Why the Servers You Rent and the Servers You Own Make Completely Different Promises",
+    "link": "https://sheraz12.medium.com/why-the-servers-you-rent-and-the-servers-you-own-make-completely-different-promises-268f2e662fda",
+    "date": "2026-09-14",
+    "readMinutes": 8,
+    "description": "Cloud rentals vs. self-hosted bare metal: weighing operational convenience, vendor boundaries, cost predictability, and strategic control for modern engineering teams.",
+    "tags": [
+      "Cloud Computing",
+      "Infrastructure",
+      "DevOps",
+      "Architecture"
+    ],
+    "mediumTags": [
+      "data-engineering",
+      "dia-d",
+      "software-engineering",
+      "distributed-systems",
+      "cloud-computing"
+    ],
+    "cover": "https://cdn-images-1.medium.com/max/1024/1*RP08XqWCNL5Ty2tCNcqa2A.png"
+  },
+  {
+    "id": "21ae4e66b57b",
+    "title": "Why Your Bank App and Your Company’s Sales Report Run on Completely Different Systems",
+    "link": "https://sheraz12.medium.com/why-your-bank-app-and-your-companys-sales-report-run-on-completely-different-systems-21ae4e66b57b",
+    "date": "2026-09-11",
+    "readMinutes": 7,
+    "description": "Breaking down transactional vs. analytical workloads: why systems of record separate from reporting engines, and how HTAP attempts to bridge the gap.",
+    "tags": [
+      "Databases",
+      "OLTP & OLAP",
+      "Data Engineering",
+      "System Design"
+    ],
+    "mediumTags": [
+      "system-design-concepts",
+      "system-design-interview",
+      "distributed-systems",
+      "systems-thinking",
+      "dia-d"
+    ],
+    "cover": "https://cdn-images-1.medium.com/max/1024/1*iSGJ99d3v6roiQayDiMD1w.png"
+  },
+  {
+    "id": "86e4ba783d0b",
+    "title": "Route Handlers and Middleware in Next.js, Through the Eyes of an Express Developer",
+    "link": "https://sheraz12.medium.com/route-handlers-and-middleware-in-next-js-through-the-eyes-of-an-express-developer-86e4ba783d0b",
+    "date": "2026-07-24",
+    "readMinutes": 7,
+    "description": "Bridging the paradigm shift between Express middleware pipelines and Next.js App Router route handlers, edge runtimes, and request context handling.",
+    "tags": [
+      "Next.js",
+      "React",
+      "JavaScript"
+    ],
+    "mediumTags": [
+      "nextjs",
+      "javascript-development",
+      "javascript",
+      "react",
+      "javascript-tips"
+    ],
+    "cover": "https://cdn-images-1.medium.com/max/1024/1*cUQZj7RIbxNR8QVM0mKVGw.png"
+  },
+  {
+    "id": "552368dac5ac",
+    "title": "Next.js Routing Deep Dive: Parallel Routes & Intercepting Routes",
+    "link": "https://sheraz12.medium.com/next-js-routing-deep-dive-parallel-routes-intercepting-routes-552368dac5ac",
+    "date": "2026-07-23",
+    "readMinutes": 6,
+    "description": "Mastering advanced routing mechanisms in Next.js: building modal workflows, contextual routing slots, and multi-view layouts without losing URL integrity.",
+    "tags": [
+      "Next.js",
+      "React",
+      "Routing"
+    ],
+    "mediumTags": [
+      "javascript-frameworks",
+      "javascript",
+      "react",
+      "javascript-development",
+      "nextjs"
+    ],
+    "cover": "https://cdn-images-1.medium.com/max/1024/1*w5_l6hD05yHb8iMvM_wI6A.png"
+  },
+  {
+    "id": "299100d97146",
+    "title": "Next.js Routing and Rendering, In Plain Simple Terms",
+    "link": "https://sheraz12.medium.com/next-js-routing-and-rendering-in-plain-simple-terms-299100d97146",
+    "date": "2026-07-22",
+    "readMinutes": 6,
+    "description": "A clear, visual breakdown of Server Components, Client Components, Static Site Generation (SSG), and Dynamic Rendering without confusing terminology.",
+    "tags": [
+      "Next.js",
+      "TypeScript",
+      "React"
+    ]
+  },
+  {
+    "id": "32d6b4ffe8f0",
+    "title": "Renders, Memoization, and Refs: Everything I Learned Prepping for React Interviews",
+    "link": "https://medium.com/@sheraz12/renders-memoization-and-refs-everything-i-learned-prepping-for-react-interviews-32d6b4ffe8f0",
+    "date": "2026-07-19",
+    "readMinutes": 12,
+    "description": "Comprehensive deep dive into React reconciliation, render passes, useMemo, useCallback trade-offs, and mutable ref values under the hood.",
+    "tags": [
+      "React",
+      "Performance",
+      "Interviews"
+    ],
+    "cover": "https://miro.medium.com/v2/resize:fit:1200/1*TxsuEM_6QjgUxElbO_1OJA.png"
+  },
+  {
+    "id": "fd95f6ca69f0",
+    "title": "JavaScript’s Hidden Engine: How the Event Loop, Memory, and Garbage Collection Actually Work",
+    "link": "https://sheraz12.medium.com/javascripts-hidden-engine-how-the-event-loop-memory-and-garbage-collection-actually-work-fd95f6ca69f0",
+    "date": "2026-04-24",
+    "readMinutes": 16,
+    "description": "An in-depth look under the hood of JavaScript runtimes: microtask queues, macrotasks, stack frames, heap allocation, and mark-and-sweep garbage collection.",
+    "tags": [
+      "JavaScript",
+      "Node.js",
+      "Memory Internals"
+    ]
+  },
+  {
+    "id": "68965998a6bb",
+    "title": "I Spent a Weekend Learning How Software Actually Gets from Your Laptop to Millions of Users",
+    "link": "https://medium.com/@sheraz12/i-spent-a-weekend-learning-how-software-actually-gets-from-your-laptop-to-millions-of-users-68965998a6bb",
+    "date": "2026-04-19",
+    "readMinutes": 9,
+    "description": "Unpacking CI/CD pipelines, containerization, reverse proxies, CDNs, and orchestration from a developer perspective stepping into infrastructure.",
+    "tags": [
+      "DevOps",
+      "AWS",
+      "Infrastructure",
+      "CI/CD"
+    ]
+  },
+  {
+    "id": "48e72a0178a3",
+    "title": "How JavaScript Actually Works: Engines, V8, and the Code Behind Your Code",
+    "link": "https://sheraz12.medium.com/how-javascript-actually-works-engines-v8-and-the-code-behind-your-code-48e72a0178a3",
+    "date": "2026-03-31",
+    "readMinutes": 11,
+    "description": "From source code to machine instructions: JIT compilation, Ignition bytecode interpreter, TurboFan optimization passes, and hidden classes in V8.",
+    "tags": [
+      "JavaScript",
+      "V8",
+      "Compilers",
+      "Software Engineering"
+    ]
+  }
+]
