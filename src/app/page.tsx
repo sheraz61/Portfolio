@@ -6,17 +6,18 @@ import { ArticlesSection } from '@/components/home/articles-section'
 import { BeyondSection } from '@/components/home/beyond-section'
 import { ContactSection } from '@/components/home/contact-section'
 import { getGitHubContributions } from '@/lib/github-contributions'
+import { getArticles } from '@/lib/articles'
 
 export default async function Page() {
-  // Cached on the server and refreshed every 12 hours; null hides the widget
-  const contributions = await getGitHubContributions()
+  // Both are cached on the server: GitHub every 12 hours (null hides the widget), Medium every 6 hours
+  const [contributions, articles] = await Promise.all([getGitHubContributions(), getArticles()])
 
   return (
     <main>
       <HeroSection activity={contributions ? <GitHubActivity data={contributions} /> : null} />
       <TechStackSection />
       <ProjectsPreviewSection />
-      <ArticlesSection />
+      <ArticlesSection articles={articles} />
       <BeyondSection />
       <ContactSection />
     </main>

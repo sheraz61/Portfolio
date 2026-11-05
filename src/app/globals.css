@@ -326,3 +326,30 @@
     transform: none;
   }
 }
+
+/* ─── Writing: article covers ─── */
+/* Grayscale until the card (a parent .group) is hovered, like the project screenshots */
+.article-cover {
+  filter: grayscale(1);
+  transition:
+    filter 0.6s ease,
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.group:hover .article-cover {
+  filter: grayscale(0);
+  transform: scale(1.03);
+}
+
+/* Touch screens have no hover: show the real colours */
+@media (hover: none) {
+  .article-cover {
+    filter: none;
+  }
+}
+
+/* Dot texture on generated covers (always dark, like the Medium covers) */
+.article-cover-dots {
+  background-image: radial-gradient(rgb(255 255 255 / 0.08) 1px, transparent 1px);
+  background-size: 14px 14px;
+}
