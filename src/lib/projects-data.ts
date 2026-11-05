@@ -1,5 +1,15 @@
+export type ProjectCategory = 'Full-stack' | 'AI / ML' | 'Backend' | 'Frontend'
+
+export const projectCategories: ProjectCategory[] = ['Full-stack', 'AI / ML', 'Backend', 'Frontend']
+
 export type Project = {
     slug: string
+    /** First one is the label shown on the card; the project appears under every one in the filters */
+    categories: ProjectCategory[]
+    /** Keep the project in this file but leave it off the site (no card, no page) */
+    hidden?: boolean
+    /** Headline fact for the project page's stat grid when the project isn't featured */
+    fact?: { value: string; label: string }
     name: string
     period: string
     status: 'Building' | 'Completed'
@@ -8,12 +18,42 @@ export type Project = {
     stack: string[]
     github: string
     vercel?: string
-    image?: string
+    /**
+     * Screen recording for the project page, e.g. '/projects/videos/learnex.mp4'.
+     * When set it replaces the screenshot there (muted, looping, with the cover as poster).
+     */
+    video?: string
+    /** Screenshots of the live demo, used by the home page showcase */
+    preview?: {
+        /** Page the screenshots show, when it isn't the demo's home page */
+        url?: string
+        /** First screen, 1200x750 */
+        cover: string
+        /** Full page (1200px wide), scrolled through on hover; omitted when the site is a single screen */
+        full?: { src: string; height: number }
+    }
+    /** Set on projects shown in the home page "Selected work" showcase */
+    featured?: {
+        /** Display order on the home page */
+        order: number
+        /** Short category line, e.g. "E-learning platform" */
+        tagline: string
+        /** One or two sentences for the showcase card */
+        summary: string
+        /** Headline number */
+        metric: { value: string; label: string }
+        /** Small extra badge, e.g. an award */
+        badge?: string
+        /** The few technologies to show on the card */
+        stack: string[]
+    }
 }
 
-export const projects: Project[] = [
+/* Every project, including hidden ones. Use `projects` below for what the site shows. */
+const allProjects: Project[] = [
     {
         slug: 'learnex',
+        categories: ['Full-stack'],
         name: 'LearnEx',
         period: 'Aug 2026',
         status: 'Completed',
@@ -48,10 +88,20 @@ export const projects: Project[] = [
         ],
         github: 'https://github.com/sheraz61/learnex',
         vercel: 'https://learn-ex-client.vercel.app/',
+        preview: { cover: '/projects/learnex.webp', full: { src: '/projects/learnex-full.webp', height: 3640 } },
+        featured: {
+            order: 1,
+            tagline: 'E-learning platform',
+            summary:
+                'A student site, an admin dashboard and an Express API deployed as three apps, with Stripe checkout, Socket.io live notifications, Redis caching and 12-month Chart.js analytics.',
+            metric: { value: '37', label: 'REST endpoints' },
+            stack: ['Next.js', 'TypeScript', 'Express', 'MongoDB', 'Redis', 'Stripe'],
+        },
     },
 
     {
         slug: 'campusguard',
+        categories: ['AI / ML', 'Full-stack'],
         name: 'CampusGuard',
         period: 'Sep 2025 - Jun 2026',
         status: 'Completed',
@@ -79,10 +129,21 @@ export const projects: Project[] = [
         ],
         github: 'https://github.com/sheraz61/CampusGaurd',
         vercel: 'https://campus-gaurd-five.vercel.app/',
+        preview: { cover: '/projects/campusguard.webp' },
+        featured: {
+            order: 2,
+            tagline: 'AI campus safety system',
+            summary:
+                'Flags suspicious activity with a ResNet50 + CBAM vision model served from FastAPI, with PostgreSQL, S3 storage and live WebSocket alerts for admin, guard and CSA roles.',
+            metric: { value: '91%', label: 'model accuracy' },
+            badge: 'A+ capstone',
+            stack: ['React', 'FastAPI', 'TensorFlow', 'PostgreSQL', 'AWS S3'],
+        },
     },
 
     {
         slug: 'vendora',
+        categories: ['Full-stack'],
         name: 'Vendora',
         period: 'Feb 2026 - Apr 2026',
         status: 'Completed',
@@ -113,10 +174,20 @@ export const projects: Project[] = [
         ],
         github: 'https://github.com/sheraz61/vendora',
         vercel: 'https://multi-vendor-ecom-seven.vercel.app/',
+        preview: { cover: '/projects/vendora.webp', full: { src: '/projects/vendora-full.webp', height: 3303 } },
+        featured: {
+            order: 3,
+            tagline: 'Multi-vendor marketplace',
+            summary:
+                'Sellers run their own storefronts while customers shop across them, with Stripe and PayPal checkout, Socket.io buyer–seller chat, coupons and events.',
+            metric: { value: '4', label: 'deployment units' },
+            stack: ['React', 'Node.js', 'MongoDB', 'Socket.io', 'Stripe'],
+        },
     },
 
     {
         slug: 'mockly',
+        categories: ['AI / ML', 'Full-stack'],
         name: 'Mockly',
         period: 'Oct 2025 - Present',
         status: 'Completed',
@@ -146,9 +217,12 @@ export const projects: Project[] = [
         ],
         github: 'https://github.com/sheraz61/interviewprep',
         vercel: 'https://ai-mockly.vercel.app/',
+        preview: { cover: '/projects/mockly.webp', full: { src: '/projects/mockly-full.webp', height: 2789 } },
     },
     {
         slug: 'campusconnect',
+        hidden: true,
+        categories: ['Full-stack'],
         name: 'CampusConnect',
         period: '2026 - Present',
         status: 'Building',
@@ -169,6 +243,8 @@ export const projects: Project[] = [
     },
     {
         slug: 'doctor-appointment',
+        hidden: true,
+        categories: ['Full-stack'],
         name: 'Doctor Appointment System',
         period: 'Jan 2026 - Feb 2026',
         status: 'Completed',
@@ -191,6 +267,8 @@ export const projects: Project[] = [
     },
     {
         slug: 'blog-backend',
+        hidden: true,
+        categories: ['Backend'],
         name: 'Blog Application Backend',
         period: 'Apr 2025 - May 2025',
         status: 'Completed',
@@ -213,6 +291,8 @@ export const projects: Project[] = [
     },
     {
         slug: 'quinttech',
+        fact: { value: '1st', label: 'Client project' },
+        categories: ['Frontend'],
         name: 'QuintTech',
         period: 'Jan 2026',
         status: 'Completed',
@@ -232,9 +312,12 @@ export const projects: Project[] = [
         ],
         github: 'https://github.com/sheraz61/QuintTech',
         vercel: 'https://quinttech.netlify.app/',
+        preview: { cover: '/projects/quinttech.webp', full: { src: '/projects/quinttech-full.webp', height: 2733 } },
     },
     {
         slug: 'expense-manager',
+        hidden: true,
+        categories: ['Frontend'],
         name: 'Budget Tracker App',
         period: 'Apr 2025',
         status: 'Completed',
@@ -256,3 +339,14 @@ export const projects: Project[] = [
 
     },
 ]
+/** Projects shown on the site, in order */
+export const projects = allProjects.filter((p) => !p.hidden)
+
+/** Projects for the home page showcase, in display order */
+export const featuredProjects = projects
+    .filter((p): p is Project & { featured: NonNullable<Project['featured']> } => Boolean(p.featured))
+    .sort((a, b) => a.featured.order - b.featured.order)
+
+export function getProject(slug: string) {
+    return projects.find((p) => p.slug === slug)
+}

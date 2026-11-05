@@ -181,6 +181,54 @@
   50%      { opacity: 0; }
 }
 
+/* ─── Project title cover (projects with no screenshot) ─── */
+.hero-grid-soft {
+  background-image: radial-gradient(
+    color-mix(in oklch, var(--foreground) 10%, transparent) 1px,
+    transparent 1px
+  );
+  background-size: 18px 18px;
+}
+
+/* ─── Selected work: browser-frame screenshots ─── */
+/* The viewport is a size container so the scroll can be measured in cqh (its own height) */
+.preview-viewport {
+  container-type: size;
+}
+
+/* Grayscale until the card is hovered, matching the portrait and tech logos */
+.preview-shot {
+  filter: grayscale(1);
+  transition:
+    filter 0.6s ease,
+    transform 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.group:hover .preview-shot {
+  filter: grayscale(0);
+}
+
+/* Full-page shots scroll from top to bottom while hovered, and glide back when left */
+.group:hover .preview-scroll {
+  transform: translateY(calc(-100% + 100cqh));
+  transition:
+    filter 0.6s ease,
+    transform var(--scroll-duration, 6s) cubic-bezier(0.45, 0, 0.55, 1) 0.15s;
+}
+
+/* Touch screens have no hover: show the real colours */
+@media (hover: none) {
+  .preview-shot {
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .group:hover .preview-scroll {
+    transform: none;
+  }
+}
+
 /* ─── Tech stack: two-row marquee of monochrome tiles ─── */
 .marquee-container {
   position: relative;
