@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
+import { pageMetadata } from '@/lib/site'
 import { ConnectContent } from '@/components/connect/connect-content'
 
-export const metadata: Metadata = {
-    title: 'Connect | Sheraz Hussain',
+export const metadata: Metadata = pageMetadata({
+    title: 'Contact',
     description:
-        'Get in touch email, LinkedIn, GitHub, and LeetCode. Open to full-stack, backend, and software engineering roles.',
-}
+        'Get in touch with Sheraz Hussain by email, LinkedIn, GitHub or LeetCode. Open to full-stack, backend and software engineering roles.',
+    path: '/connect',
+})
 
 export default function ConnectPage() {
     return (

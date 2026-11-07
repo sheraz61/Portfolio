@@ -2,7 +2,7 @@
 
 Personal portfolio website showcasing software engineering projects, technical writing, and contact information.
 
-Live Site: https://hsheraz.vercel.app/
+Live Site: https://sheraz.site/
 
 ## Tech Stack
 
